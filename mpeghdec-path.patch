@@ -1,0 +1,20 @@
+diff -Naur mpeghdec-r3.0.2.old/CMakeLists.txt mpeghdec-r3.0.2/CMakeLists.txt
+--- mpeghdec-r3.0.2.old/CMakeLists.txt	2026-02-16 09:03:45.708534974 +0100
++++ mpeghdec-r3.0.2/CMakeLists.txt	2026-02-16 09:16:39.522127918 +0100
+@@ -47,6 +47,8 @@
+ endif()
+ set(mpeghdec_BUILD_DOC OFF CACHE BOOL "Build mpeghdec documentation")
+ 
++include(GNUInstallDirs)
++
+ # Add libraries
+ add_subdirectory(src)
+ 
+@@ -61,7 +63,6 @@
+ endif()
+ 
+ # Install
+-include(GNUInstallDirs)
+ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/mpeghdec.pc.in ${CMAKE_CURRENT_BINARY_DIR}/mpeghdec.pc @ONLY)
+ install(FILES ${CMAKE_CURRENT_BINARY_DIR}/mpeghdec.pc DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/pkgconfig)
+ 

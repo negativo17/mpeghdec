@@ -7,6 +7,7 @@ URL:            https://github.com/Fraunhofer-IIS/mpeghdec
 
 Source0:        %{url}/archive/r%{version}/%{name}-r%{version}.tar.gz
 Patch0:         %{name}-shared.patch
+Patch1:         %{name}-path.patch
 
 BuildRequires:  cmake
 BuildRequires:  gcc-c++
@@ -35,8 +36,6 @@ developing applications that use %{name}.
 
 %install
 %cmake_install
-
-mv %{buildroot}%{_prefix}/lib %{buildroot}%{_libdir}
 
 %files
 %license LICENSE.txt
