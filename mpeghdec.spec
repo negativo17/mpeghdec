@@ -1,6 +1,12 @@
+# The NEON routines are emitted as top level asm() without .globl, which LTO
+# does not see; the references are then undefined in the shared library.
+%ifarch %{arm} aarch64
+%global _lto_cflags %{nil}
+%endif
+
 Name:           mpeghdec
 Version:        4.0.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Fraunhofer MPEG-H decoder
 License:        Software License for The Fraunhofer FDK MPEG-H Software
 URL:            https://github.com/Fraunhofer-IIS/mpeghdec
@@ -60,6 +66,9 @@ mv %{buildroot}%{_datadir}/pkgconfig/%{name}.pc %{buildroot}%{_libdir}/pkgconfig
 %{_libdir}/pkgconfig/%{name}.pc
 
 %changelog
+* Fri Sep 18 2026 Simone Caronni <negativo17@gmail.com> - 4.0.1-2
+- Disable LTO on ARM, it drops the NEON routines.
+
 * Fri Sep 18 2026 Simone Caronni <negativo17@gmail.com> - 4.0.1-1
 - Clean up SPEC file and update to 4.0.1.
 
